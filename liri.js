@@ -1,14 +1,14 @@
 require("dotenv").config();
 var keys = require("./keys");
-var socialNetwork = process.argv[2];
+var socialMedia = process.argv[2];
 
-if (socialNetwork === "twitter") {
+if (socialMedia === "twitter") {
   getTweets();
 }
-if (socialNetwork === "spotify") {
+if (socialMedia === "spotify") {
   getSong();
 }
-if (socialNetwork === "ombd") {
+if (socialMedia === "ombd") {
   getMovie();
 }
 
@@ -32,7 +32,7 @@ function getTweets() {
     response
   ) {
     if (!error) {
-      // if user has less than 10 tweets it will set their amount of tweets as the limit
+      // if user has less than 20 tweets it will set their amount of tweets as the limit
       if (tweets.length < tweetsLimit) {
         tweetsLimit = tweets.length;
       }
@@ -117,3 +117,14 @@ function getMovie() {
     );
   }
 }
+//fs node package
+var fs = require("fs");
+fs.readFile("random.txt", "utf8", function(error, data) {
+  if (error) {
+    return console.log(error);
+  }
+  var dataArr = data.split(",");
+  for (var i = 0; i < dataArr.length; i++) {
+    console.log(dataArr[i]);
+  }
+});
